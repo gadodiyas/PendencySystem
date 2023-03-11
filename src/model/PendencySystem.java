@@ -17,7 +17,7 @@ public class PendencySystem {
 
         entities.put(entity.id, entity);
         entity.setTags(tags);
-        //create keys for each hierarchy of given tags
+        //create keys for each hierarchy of given tags and add in map
         StringBuilder sb = new StringBuilder();
         for(String tag : tags){
             sb.append(tag);
