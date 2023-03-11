@@ -17,7 +17,7 @@ public class PendencySystem {
 
         entities.put(entity.id, entity);
         entity.setTags(tags);
-
+        //create keys for each hierarchy of given tags
         StringBuilder sb = new StringBuilder();
         for(String tag : tags){
             sb.append(tag);
@@ -34,6 +34,18 @@ public class PendencySystem {
 
     public int getCounts(List<String> tags) {
         int cnt = 0;
+        String key = getKey(tags);
+        if(inProgressEntities.containsKey(key)){
+            cnt = cnt + inProgressEntities.get(key).size();
+        }
+
+        System.out.println("No of entities for tag: " + key + " is " + cnt);
+        return cnt;
+
+
+    }
+
+    private static StringBuilder getStringBuilder(List<String> tags) {
         StringBuilder sb = new StringBuilder();
         for(String tag : tags){
             sb.append(tag);
@@ -41,14 +53,7 @@ public class PendencySystem {
 
         }
         sb.deleteCharAt(sb.length() -1);
-        if(inProgressEntities.containsKey(sb.toString())){
-            cnt = cnt + inProgressEntities.get(sb.toString()).size();
-        }
-
-        System.out.println("No of entities for tag: " + sb.toString() + " is " + cnt);
-        return cnt;
-
-
+        return sb;
     }
 
     public void stopTracking(int id) {
