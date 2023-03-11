@@ -45,7 +45,7 @@ public class PendencySystem {
 
     }
 
-    private static StringBuilder getStringBuilder(List<String> tags) {
+    private String getKey(List<String> tags) {
         StringBuilder sb = new StringBuilder();
         for(String tag : tags){
             sb.append(tag);
@@ -53,7 +53,7 @@ public class PendencySystem {
 
         }
         sb.deleteCharAt(sb.length() -1);
-        return sb;
+        return sb.toString();
     }
 
     public void stopTracking(int id) {
